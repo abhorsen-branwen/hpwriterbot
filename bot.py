@@ -13,7 +13,7 @@ ships = read_file("ships.txt")
 characters = read_file("characters.txt")
 tropes = read_file("tropes.txt")
 greetings = ["Howdy partner 🤠.", "Hey sexy thang.", "Heyo!", "So you say that you're struggling with some inspiration...",
-                "Boy have I got some inspo for you."]
+                "Boy have I got some inspo for you.", "What's kickin', little chicken?", "Sup, homeslice?"]
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -23,13 +23,29 @@ bot = commands.Bot(command_prefix='!')
 @bot.command(name='99')
 async def on_message(message):
     brooklyn_99_quotes = [
+    'The English language cannot fully capture the depth and complexity of my thoughts, so I\'m incorporating emojis into my speech to better express myself. Winky face.',
     'I\'m the human form of the 💯 emoji.',
+    'A place where everybody knows your name is hell. You\'re describing hell.',
+    'If I die, turn my tweets into a book.',
+    'Great, I\'d like your $8-est bottle of wine, please.',
+    'Captain Wuntch. Good to see you. But if you\'re here, who\'s guarding Hades?',
+    'I\'m playing Kwazy Cupcakes, I\'m hydrated as hell, and I\'m listening to Sheryl Crow. I\'ve got my own party going on.',
+    'Captain, turn your greatest weakness into your greatest strength. Like Paris Hilton RE: her sex tape.',
+    'Jake, piece of advice: just give up. It\'s the Boyle way. It\s why our family crest is a white flag.',
+    'All men are at least 30% attracted to me. My mother cried the day I was born, because she knew she would never be better than me. At any given moment, I\'m thinking about one thing: Richard Dreyfuss hunkered over eating dog food. I feel like I\'m the Paris of people.',
+    'Title of your sex tape.',
+    'Oh, I\'ve caused a problem. I tihink I am getting a text message. Bloop. Ah, there it is.',
+    'Coat! Coat! Jacket! Coat! Is this a police precinct or a Turkish bazaar?',
+    'The doctor said all my bleeding was internal. That\'s where the blood is supposed to be!',
+    'Noice. SMORT.',
+    'All right, fine. If you guys won\'t help me, I guess I\'ll just get myself off. Context. Context was important on that one.',
         'Bingpot!',
         (
             'Cool. Cool cool cool cool cool cool cool, '
             'no doubt no doubt no doubt no doubt.'
         ),
-        'Your butt is the bomb.'
+        'Your butt is the bomb.',
+        'Sarge, with all due respect, I am gonna completely ignore everything you just said.',
     ]
 
     response = random.choice(brooklyn_99_quotes)
