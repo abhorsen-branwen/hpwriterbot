@@ -32,7 +32,6 @@ clyent==1.2.1
 colorama==0.4.1
 conda==4.3.16
 conda-build==2.1.5
-conda-verify==3.1.1
 contextlib2==0.5.5
 controller-manager-msgs==0.15.1
 cryptography==2.4.2
