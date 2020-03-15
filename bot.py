@@ -110,6 +110,15 @@ async def info(ctx):
 
     await ctx.send(embed=embed)
 
+@bot.command(name="crackship")
+async def info(ctx):
+    character_one = random.choice(characters)
+    character_two = random.choice(characters)
+    while (character_two == character_one):
+        character_two = random.choice(characters)
+
+    response = str(greeting)+" Let's see what you can do with these two: "+str(character_one).strip("\n")+" and "+str(character_two)
+    await ctx.send(response)
 
 bot.remove_command('help')
 @bot.command()
@@ -123,6 +132,7 @@ async def help(ctx):
     embed.add_field(name="!trope", value="Gives you a random trope")
     embed.add_field(name="!ship-trope", value="Gives you a random ship and trope")
     embed.add_field(name="!character-trope", value="Gives you a random character and trope")
+    embed.add_field(name="!crackship", value="Gives you two random characters to use in a crackship. Use at your own caution")
     await ctx.send(embed=embed)
 
 bot.run(TOKEN)
