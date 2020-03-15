@@ -56,7 +56,6 @@ Flask-Login==0.4.1
 Flask-RESTful==0.3.7
 Flask-SQLAlchemy==2.4.0
 future==0.17.1
-gencpp==0.6.2
 geneus==2.2.6
 genlisp==0.4.16
 genmsg==0.5.12
