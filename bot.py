@@ -112,6 +112,7 @@ async def info(ctx):
 
 @bot.command(name="crackship")
 async def info(ctx):
+    greeting = random.choice(greetings)
     character_one = random.choice(characters)
     character_two = random.choice(characters)
     while (character_two == character_one):
