@@ -16,7 +16,7 @@ bkcharts==0.2.0
 blaze==0.10.1
 bleach==3.0.2
 bokeh==1.0.2
-bondpy==1.8.3
+bondpy==0.1.11
 boto==2.49.0
 Bottleneck==1.2.1
 CacheControl==0.12.5
