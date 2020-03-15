@@ -188,13 +188,6 @@ qtconsole==4.4.3
 QtPy==1.5.2
 requests==2.21.0
 rope==0.11.0
-rqt-gui==0.5.0
-rqt-gui-py==0.5.0
-rqt-py-console==0.4.8
-rqt-runtime-monitor==0.5.7
-rqt-shell==0.4.9
-rqt-top==0.4.8
-rqt-web==0.4.8
 rsa==4.0
 ruamel-yaml==0.15.46
 scikit-image==0.14.1
