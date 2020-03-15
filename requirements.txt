@@ -105,7 +105,7 @@ MarkupSafe==1.1.0
 marshmallow==2.19.5
 marshmallow-enum==1.4.1
 matplotlib==3.0.2
-meld==3.21.0
+meld==0.2.4
 message-filters==1.14.3
 mirakuru==2.0.1
 mistune==0.8.4
