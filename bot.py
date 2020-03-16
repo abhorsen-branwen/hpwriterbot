@@ -70,7 +70,7 @@ async def on_message(ctx):
     greeting = random.choice(greetings)
     ship = random.choice(ships)
     character = random.choice(characters)
-    trope = random.choice(tropes.keys())
+    trope = random.choice(list(tropes.keys()))
 
     response = str(greeting)+" Here's a ship: "+str(ship).strip("\n")+", and a character: "+str(character).strip("\n")+", and last but not least, a trope: "+str(trope)
     await ctx.send(response)
@@ -92,7 +92,7 @@ async def on_message(ctx):
 @bot.command(name="trope")
 async def on_message(ctx):
     greeting = random.choice(greetings)
-    trope = random.choice(tropes.keys())
+    trope = random.choice(list(tropes.keys()))
     response = str(greeting)+" Here's a trope for you: "+str(trope)
     await ctx.send(response)
 
@@ -100,7 +100,7 @@ async def on_message(ctx):
 async def on_message(ctx):
     greeting = random.choice(greetings)
     ship = random.choice(ships)
-    trope = random.choice(tropes.keys())
+    trope = random.choice(list(tropes.keys()))
     response = str(greeting)+" Here's a ship: "+str(ship).strip("\n")+", and a trope: "+str(trope)
     await ctx.send(response)
 
@@ -108,7 +108,7 @@ async def on_message(ctx):
 async def on_message(ctx):
     greeting = random.choice(greetings)
     character = random.choice(characters)
-    trope = random.choice(tropes.keys())
+    trope = random.choice(list(tropes.keys()))
     response = str(greeting)+" Here's a character: "+str(character).strip("\n")+", and a trope: "+str(trope)
     await ctx.send(response)
 
@@ -117,7 +117,6 @@ async def on_message(ctx):
     length = len("!more-on")
     contents = ctx.message.content
     trope = ctx.message.content[length+1:]
-    print(tropes[trope])
     response = ""
     if trope in tropes.keys():
         response = "Here's more on "+str(trope)+": "+(tropes[trope]).strip("\n")
@@ -126,10 +125,10 @@ async def on_message(ctx):
 
     await ctx.send(response)
 
-@bot.command(name="see-all-tropes")
-async def on_message(ctx):
-    response = '\n'.join(tropes.keys())
-    await ctx.send(response)
+# @bot.command(name="see-all-tropes")
+# async def on_message(ctx):
+#     response = '\n'.join(list(tropes.keys()))
+#     await ctx.send(response)
 
 @bot.command()
 async def info(ctx):
