@@ -9,9 +9,21 @@ def read_file(filename):
     lines = f.readlines()
     return lines
 
+def read_tropes():
+    lines = read_file("tropes.txt")
+    tropes_dict = {}
+    for line in lines:
+        line_parts = line.split(": ")
+        trope = line_parts[0]
+        explanation = line_parts[1]
+        if trope not in tropes_dict.keys():
+            tropes_dict[trope] = explanation
+    return tropes_dict
+
+
 ships = read_file("ships.txt")
 characters = read_file("characters.txt")
-tropes = read_file("tropes.txt")
+tropes = read_tropes()
 greetings = ["Howdy partner 🤠.", "Hey sexy thang.", "Heyo!", "So you say that you're struggling with some inspiration...",
                 "Boy have I got some inspo for you.", "What's kickin', little chicken?", "Sup, homeslice?"]
 
@@ -56,7 +68,7 @@ async def on_message(ctx):
     greeting = random.choice(greetings)
     ship = random.choice(ships)
     character = random.choice(characters)
-    trope = random.choice(tropes)
+    trope = random.choice(tropes.keys())
 
     response = str(greeting)+" Here's a ship: "+str(ship).strip("\n")+", and a character: "+str(character).strip("\n")+", and last but not least, a trope: "+str(trope)
     await ctx.send(response)
@@ -78,7 +90,7 @@ async def on_message(ctx):
 @bot.command(name="trope")
 async def on_message(ctx):
     greeting = random.choice(greetings)
-    trope = random.choice(tropes)
+    trope = random.choice(tropes.keys())
     response = str(greeting)+" Here's a trope for you: "+str(trope)
     await ctx.send(response)
 
@@ -86,7 +98,7 @@ async def on_message(ctx):
 async def on_message(ctx):
     greeting = random.choice(greetings)
     ship = random.choice(ships)
-    trope = random.choice(tropes)
+    trope = random.choice(tropes.keys())
     response = str(greeting)+" Here's a ship: "+str(ship).strip("\n")+", and a trope: "+str(trope)
     await ctx.send(response)
 
@@ -94,8 +106,27 @@ async def on_message(ctx):
 async def on_message(ctx):
     greeting = random.choice(greetings)
     character = random.choice(characters)
-    trope = random.choice(tropes)
+    trope = random.choice(tropes.keys())
     response = str(greeting)+" Here's a character: "+str(character).strip("\n")+", and a trope: "+str(trope)
+    await ctx.send(response)
+
+@bot.command(name="more-on")
+async def on_message(ctx):
+    length = len("!more-on")
+    contents = ctx.message.content
+    trope = ctx.message.content[length+1:]
+    print(tropes[trope])
+    response = ""
+    if trope in tropes.keys():
+        response = "Here's more on "+str(trope)+": "+(tropes[trope]).strip("\n")
+    else:
+        response = "Sorry, that's not a valid trope. Please make sure you type the trope in exactly as it was shown to you."
+
+    await ctx.send(response)
+
+@bot.command(name="see-all-tropes")
+async def on_message(ctx):
+    response = '\n'.join(tropes.keys())
     await ctx.send(response)
 
 @bot.command()
@@ -134,6 +165,8 @@ async def help(ctx):
     embed.add_field(name="!ship-trope", value="Gives you a random ship and trope")
     embed.add_field(name="!character-trope", value="Gives you a random character and trope")
     embed.add_field(name="!crackship", value="Gives you two random characters to use in a crackship. Use at your own caution")
+    embed.add_field(name="!see-all-tropes", value="Shows you all the tropes. Alllll of them.")
+    embed.add_field(name="!more-on", value="Gives you more information on a given trope of your choice. Make sure the trope is entered exactly as it was shown to you!")
     await ctx.send(embed=embed)
 
 bot.run(TOKEN)
