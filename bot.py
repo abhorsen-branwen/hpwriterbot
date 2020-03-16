@@ -4,6 +4,8 @@ import random
 import discord
 from discord.ext import commands
 
+tropes_dict = {}
+
 def read_file(filename):
     f = open(filename, "r", encoding="utf-8")
     lines = f.readlines()
@@ -11,11 +13,11 @@ def read_file(filename):
 
 def read_tropes():
     lines = read_file("tropes.txt")
-    tropes_dict = {}
+
     for line in lines:
         line_parts = line.split(": ")
-        trope = line_parts[0]
-        explanation = line_parts[1]
+        trope = line_parts[0].lower()
+        explanation = line_parts[1].lower()
         if trope not in tropes_dict.keys():
             tropes_dict[trope] = explanation
     return tropes_dict
@@ -165,7 +167,6 @@ async def help(ctx):
     embed.add_field(name="!ship-trope", value="Gives you a random ship and trope")
     embed.add_field(name="!character-trope", value="Gives you a random character and trope")
     embed.add_field(name="!crackship", value="Gives you two random characters to use in a crackship. Use at your own caution")
-    embed.add_field(name="!see-all-tropes", value="Shows you all the tropes. Alllll of them.")
     embed.add_field(name="!more-on", value="Gives you more information on a given trope of your choice. Make sure the trope is entered exactly as it was shown to you!")
     await ctx.send(embed=embed)
 
