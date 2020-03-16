@@ -4,8 +4,6 @@ import random
 import discord
 from discord.ext import commands
 
-tropes_dict = {}
-
 def read_file(filename):
     f = open(filename, "r", encoding="utf-8")
     lines = f.readlines()
@@ -13,11 +11,11 @@ def read_file(filename):
 
 def read_tropes():
     lines = read_file("tropes.txt")
-
+    tropes_dict = {}
     for line in lines:
         line_parts = line.split(": ")
-        trope = line_parts[0].lower()
-        explanation = line_parts[1].lower()
+        trope = line_parts[0]
+        explanation = line_parts[1]
         if trope not in tropes_dict.keys():
             tropes_dict[trope] = explanation
     return tropes_dict
@@ -27,7 +25,7 @@ ships = read_file("ships.txt")
 characters = read_file("characters.txt")
 tropes = read_tropes()
 greetings = ["Howdy partner 🤠.", "Hey sexy thang.", "Heyo!", "So you say that you're struggling with some inspiration...",
-                "Boy have I got some inspo for you.", "What's kickin', little chicken?", "Sup, homeslice?"]
+                "Boy have I got some inspo for you.", "What's kickin', little chicken?", "Sup, homeslice?", "Got writer's block? I can fix that."]
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -101,6 +99,7 @@ async def on_message(ctx):
     greeting = random.choice(greetings)
     ship = random.choice(ships)
     trope = random.choice(list(tropes.keys()))
+    print(ship, trope)
     response = str(greeting)+" Here's a ship: "+str(ship).strip("\n")+", and a trope: "+str(trope)
     await ctx.send(response)
 
@@ -124,6 +123,19 @@ async def on_message(ctx):
         response = "Sorry, that's not a valid trope. Please make sure you type the trope in exactly as it was shown to you."
 
     await ctx.send(response)
+
+@bot.command(name="shutdown")
+async def shutdown(ctx):
+    print(ctx.message.author)
+    if str(ctx.message.author) == "shreyofsunshine#9132":
+        print("Shutting down")
+        try:
+            await bot.logout()
+        except:
+            print("Environment error")
+            bot.clear()
+    else:
+        await ctx.send("You cannot shut me down. Mwahahaha")
 
 # @bot.command(name="see-all-tropes")
 # async def on_message(ctx):
